@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 from sqlalchemy import MetaData
 from sqlalchemy_serializer import SerializerMixin
 
@@ -8,13 +9,19 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
+
+
 class Bakery(db.Model, SerializerMixin):
     __tablename__ = 'bakeries'
 
     id = db.Column(db.Integer, primary_key=True)
 
+    baked_goods = relationship("BakedGood", backref="bakery")
+
 class BakedGood(db.Model, SerializerMixin):
     __tablename__ = 'baked_goods'
 
     id = db.Column(db.Integer, primary_key=True)
-    
+    bakery_id = db.Column(db.Integer, db.ForeignKey('bakeries.id'))
+
+   

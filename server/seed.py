@@ -6,7 +6,21 @@ from faker import Faker
 
 from app import app
 from models import db, Bakery, BakedGood
+bakeries = [
 
+    "Valentine"
+    "Cake House"
+    "Sweet tooth"
+    "Tasty Bread"
+]
+
+baked_goods = [
+
+    "Bread"
+    "cake"
+    "Queen Cakes"
+    "Burns"
+]
 fake = Faker()
 
 with app.app_context():
